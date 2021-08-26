@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
+const morgan = require('morgan');
 const api = require('./routes/V1/api');
 
 
@@ -9,6 +10,8 @@ const app = express();
 app.use(cors({
     origin: '*'
 }));
+
+app.use(morgan());
 
 app.use(express.json());
 
