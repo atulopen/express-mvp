@@ -30,7 +30,15 @@ function createNewLaunch(launch) {
     return launch;
 }
 
+function abortLaunchById(id) {
+    const aborted = launches.get(id);
+    aborted.success = false;
+    aborted.upcoming = false;
+    return aborted;
+}
+
 module.exports = {
     getAllLaunches,
     createNewLaunch,
+    abortLaunchById,
 }

@@ -1,5 +1,4 @@
-const express = require('express');
-const {getAllLaunches, createNewLaunch} = require('../../models/launches.model');
+const {getAllLaunches, createNewLaunch, abortLaunchById} = require('../../models/launches.model');
 
 
 function httpGetAllLaunches(req, res) {
@@ -13,7 +12,14 @@ function httpCreateNewLaunch(req, res) {
     return res.status(201).json(launch);
 }
 
+function httpAbortLaunch(req, res) {
+    const id = req.params.id;
+    const aborted = abortLaunchById(Number(id));
+    return res.status(200).json(aborted);
+}
+
 module.exports = {
     httpGetAllLaunches,
-    httpCreateNewLaunch
+    httpCreateNewLaunch,
+    httpAbortLaunch,
 }
