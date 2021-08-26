@@ -1,6 +1,6 @@
 const launches = new Map();
 
-const flightNumber = 100;
+let flightNumber = 100;
 
 const launch = {
     flightNumber,
@@ -18,6 +18,19 @@ function getAllLaunches() {
     return Array.from(launches.values())
 }
 
+function createNewLaunch(launch) {
+    flightNumber++;
+    Object.assign(launch, {
+        flightNumber,
+        success: true,
+        upcoming: true,
+    })
+
+    launches.set(flightNumber, launch);
+    return launch;
+}
+
 module.exports = {
-    getAllLaunches
+    getAllLaunches,
+    createNewLaunch,
 }
