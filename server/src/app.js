@@ -11,7 +11,7 @@ app.use(cors({
     origin: '*'
 }));
 
-app.use(morgan());
+app.use(morgan('combined'));
 
 app.use(express.json());
 
