@@ -30,6 +30,25 @@ describe('Test POST /launches', () => {
             .expect(201)
             .expect('Content-Type', /json/);
 
+        const launchDate = new Date(completeLaunchData.launchDate).valueOf();
+        const responseLaunchDate = new Date(response.body.launchDate).valueOf();
+
+        expect(launchDate).toBe(responseLaunchDate);
+
         expect(response.body).toMatchObject(launchDataWithoutDate);
+
+    })
+
+    test('it should handle missing required fields', async () => {
+
+        const response = await request(app)
+            .post('/v1/launches')
+            .expect(400)
+            .expect('Content-Type', /json/);
+
+        expect(response.body).toMatchObject({
+            error: 'Missing Required Fields'
+        });
+
     })
 })
