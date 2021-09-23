@@ -2,7 +2,7 @@ const http = require('http');
 const mongoose = require('mongoose');
 const app = require('./app');
 const {loadHabitablePlanets} = require('./models/planets.model')
-const PORT = 9000;
+const PORT = 8000;
 const MONGO_URL = 'mongodb+srv://arthur_learning:dSb7b2ttopKXsLzs@nasacluster.otwsj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 const server = http.createServer(app);
 
