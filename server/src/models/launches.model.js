@@ -1,11 +1,12 @@
 const launchDatabase = require('./launches.mongo');
+const planetDatabase = require('./planets.mongo');
 
 const DEFAULT_FLIGHT_NUMBER = 100;
 
 const launch = {
     flightNumber: DEFAULT_FLIGHT_NUMBER,
     launchDate: '23 December, 2021',
-    target: 'testing target',
+    target: 'Kepler-1410 b',
     rocket: 'testing rocket',
     mission: 'testing mission',
     customers: ['ZTM', 'ARTHUR'],
@@ -51,6 +52,16 @@ async function scheduleLaunch(launch) {
         upcoming: true,
         customers: ['ZTM', 'ARTHUR']
     });
+
+    const planet = await planetDatabase.findOne({
+        keplerName: launch.target
+    });
+
+
+    if (!planet) {
+        throw new Error('Planet not found');
+    }
+
     await saveLaunch(launch);
 }
 
